@@ -1,6 +1,6 @@
 Https://suika-game.app/ko
 
-/paulantoine2/suika - git hub
+https://github.com/paulantoine2/suika
 Matter.js
 Vite
 

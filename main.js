@@ -51,7 +51,7 @@ const topLine = Bodies.rectangle(310, 150, 620, 2, {
 
 World.add(world, [leftWall, rightWall, ground, topLine]);
 
-Render.run(render); 
+Render.run(render);
 Runner.run(engine);
 
 let currentBody = null;
@@ -84,8 +84,8 @@ window.onkeydown = (event) => {
     }
 
     switch (event.code) {
-        case "KeyJ":
-            if (interval) 
+        case "ArrowLeft":
+            if (interval)
                 return;
 
             interval = setInterval(() => {
@@ -97,8 +97,8 @@ window.onkeydown = (event) => {
             }, 5);
             break;
 
-        case "KeyL":
-            if (interval) 
+        case "ArrowRight":
+            if (interval)
                 return;
 
             interval = setInterval(() => {
@@ -110,7 +110,7 @@ window.onkeydown = (event) => {
             }, 5);
             break;
 
-        case "KeyK":
+        case "Space":
             currentBody.isSleeping = false;
             disabledAction = true;
 
@@ -124,8 +124,8 @@ window.onkeydown = (event) => {
 
 window.onkeyup = (event) => {
     switch (event.code) {
-        case "KeyJ":
-        case "KeyL":
+        case "ArrowLeft":
+        case "ArrowRight":
             clearInterval(interval);
             interval = null;
     }
@@ -135,7 +135,7 @@ Events.on(engine, "collisionStart", (event) => {
     event.pairs.forEach((collision) => {
         if (collision.bodyA.index === collision.bodyB.index) {
             const _index = collision.bodyA.index;
-            
+
             if (_index === FRUITS.length - 1) {
                 return;
             }
@@ -155,15 +155,15 @@ Events.on(engine, "collisionStart", (event) => {
                     index: _index + 1,
                 }
             );
-            
+
             World.add(world, _body);
         }
 
-        if ( !disabledAction && 
+        if ( !disabledAction &&
             (collision.bodyA.name === "topLine" || collision.bodyB.name === "topLine")) {
             alert("GAME OVER");
         }
     });
-}); 
+});
 
 addFruit();
